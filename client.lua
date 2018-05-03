@@ -1,11 +1,12 @@
-function SendAlert(msg, msg2)
+RegisterNetEvent("SendAlert")
+AddEventHandler("SendAlert", function(msg, msg2)
     SendNUIMessage({
         type = "alert",
         enable = true,
         issuer  = msg,
         message = msg2
     })
-end
+end)
 
 RegisterNetEvent("alert:Send")
 AddEventHandler("alert:Send", function(msg)
@@ -17,8 +18,9 @@ AddEventHandler("alert:Send", function(msg)
                 Wait(0);
             end
             if (GetOnscreenKeyboardResult()) then
-                local msg2 = GetOnscreenKeyboardResult()
                 msg = Config.EAS.Departments[i].name
+                local msg2 = GetOnscreenKeyboardResult()
+                TriggerServerEvent("alert:sv", msg, msg2)
                 SendAlert(msg, msg2)
             end
         end

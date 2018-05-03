@@ -1,12 +1,3 @@
-AddEventHandler('chatMessage', function(source, name, msg)
-	local cm = stringsplit(msg, " ")
-    if cm[1] == "/alert" then
-        CancelEvent()
-        local msg = tostring(cm[2])			
-        TriggerClientEvent('alert:Send', source, msg)
-    end
-end)
-
 function stringsplit(inputstr, sep)
     if sep == nil then
         sep = "%s"
@@ -18,3 +9,14 @@ function stringsplit(inputstr, sep)
     end
     return t
 end
+
+RegisterCommand("alert", function(source, args, rawCommand)
+        CancelEvent()
+        local msg = args[1]
+        TriggerClientEvent("alert:Send", source, msg)
+end, false)
+
+RegisterServerEvent("alert:sv")
+AddEventHandler("alert:sv", function (msg, msg2)
+    TriggerClientEvent("SendAlert", -1, msg, msg2)
+end)
