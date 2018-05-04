@@ -1,12 +1,13 @@
     var snd = new Audio("alert.mp3");
 
-    function speak(msg){
-        snd.play();
-        setTimeout(function(){
-            snd.pause();
-            snd.currentTime = 0;
-            document.body.style.display = "none";
-        }, 22000);
+function alert(volume){
+    snd.volume = volume;
+    snd.play();
+    setTimeout(function(){
+        snd.pause();
+        snd.currentTime = 0;
+        document.body.style.display = "none";
+    }, 22000);
 }
 
 function hide() {
@@ -35,7 +36,7 @@ $(function() {
 		if (event.data.type == "alert") {
             $('.eas_alerter').html('<p>'+addCommas("Alert Issued by:")+'</p> <p>'+addCommas(event.data.issuer)+'</p> </marquee><marquee behavior="scroll" direction="left" scrollamount="20"><p>'+addCommas(event.data.message)+'</p></marquee>');
             document.body.style.display = event.data.enable ? "block" : "none";
-            speak(event.data.message)
+            alert(event.data.volume)
 		}
 	});
 });
