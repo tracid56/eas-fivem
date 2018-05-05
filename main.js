@@ -34,7 +34,7 @@ function addCommas(nStr) {
 $(function() {
 	window.addEventListener('message', function(event) {
 		if (event.data.type == "alert") {
-            $('.eas_alerter').html('<p>'+addCommas("Alert Issued by:")+'</p> <p>'+addCommas(event.data.issuer)+'</p> </marquee><marquee behavior="scroll" direction="left" scrollamount="20"><p>'+addCommas(event.data.message)+'</p></marquee>');
+            $('.eas_alerter').html('<p>Alert Issued by:</p> <p>'+event.data.issuer+'</p> </marquee><marquee behavior="scroll" direction="left" scrollamount="20"><p>'+event.data.message+'</p></marquee>');
             document.body.style.display = event.data.enable ? "block" : "none";
             alert(event.data.volume)
 		}
