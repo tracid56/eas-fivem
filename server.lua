@@ -12,15 +12,19 @@ end
 
 RegisterServerEvent("alert:sv")
 AddEventHandler("alert:sv", function (msg, msg2)
-    TriggerClientEvent("SendAlert", -1, msg, msg2)
+	if (isAdmin(source)) then
+    		TriggerClientEvent("SendAlert", -1, msg, msg2)
+	end
 end)
 
 AddEventHandler('chatMessage', function(source, name, msg)
-	local command = stringsplit(msg, " ")[1];
-	
-	if command == "/alert" then
-        CancelEvent()
-        TriggerClientEvent("alert:Send", source, string.sub(msg, 8), Config.EAS.Departments)
+	if (isAdmin(source)) then
+		local command = stringsplit(msg, " ")[1];
+
+		if command == "/alert" then
+		CancelEvent()
+		TriggerClientEvent("alert:Send", source, string.sub(msg, 8), Config.EAS.Departments)
+		end
 	end
 end)
 
