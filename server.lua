@@ -23,3 +23,18 @@ AddEventHandler('chatMessage', function(source, name, msg)
         TriggerClientEvent("alert:Send", source, string.sub(msg, 8), Config.EAS.Departments)
 	end
 end)
+
+local function isAdmin(source)
+    local allowed = false
+    for i,id in ipairs(Config.EAS.admins) do
+        for x,pid in ipairs(GetPlayerIdentifiers(source)) do
+            if string.lower(pid) == string.lower(id) then
+                allowed = true
+            end
+        end
+	end
+	if IsPlayerAceAllowed(source, "lance.eas") then
+		allowed = true
+	end
+    return allowed
+end
