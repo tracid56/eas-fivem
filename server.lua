@@ -20,6 +20,6 @@ AddEventHandler('chatMessage', function(source, name, msg)
 	
 	if command == "/alert" then
         CancelEvent()
-        TriggerClientEvent("alert:Send", source, string.sub(msg, 8))
+        TriggerClientEvent("alert:Send", source, string.sub(msg, 8), Config.EAS.Departments)
 	end
 end)
