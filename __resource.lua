@@ -1,6 +1,6 @@
 client_script 'client.lua'
-client_script 'config.lua'
-server_script 'config.lua'
+shared_script 'config.lua'
+server_script 'server_config.lua'
 server_script 'server.lua'
 
 ui_page {
