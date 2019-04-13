@@ -10,7 +10,7 @@ AddEventHandler("SendAlert", function(msg, msg2)
 end)
 
 RegisterNetEvent("alert:Send")
-AddEventHandler("alert:Send", function(msg)
+AddEventHandler("alert:Send", function(msg, departments)
     for i, v in pairs(Config.EAS.Departments) do
         if msg == i then
             DisplayOnscreenKeyboard(1, "", "", "", "", "", "", 600)
