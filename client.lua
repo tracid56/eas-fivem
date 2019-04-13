@@ -11,7 +11,7 @@ end)
 
 RegisterNetEvent("alert:Send")
 AddEventHandler("alert:Send", function(msg, departments)
-    for i, v in pairs(Config.EAS.Departments) do
+    for i, v in pairs(departments) do
         if msg == i then
             DisplayOnscreenKeyboard(1, "", "", "", "", "", "", 600)
             while (UpdateOnscreenKeyboard() == 0) do
@@ -19,7 +19,7 @@ AddEventHandler("alert:Send", function(msg, departments)
                 Wait(0);
             end
             if (GetOnscreenKeyboardResult()) then
-                msg = Config.EAS.Departments[i].name
+                msg = departments[i].name
                 local msg2 = GetOnscreenKeyboardResult()
                 TriggerServerEvent("alert:sv", msg, msg2)
                 SendAlert(msg, msg2)
